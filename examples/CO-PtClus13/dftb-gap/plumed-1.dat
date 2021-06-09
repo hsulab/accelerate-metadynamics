@@ -1,0 +1,36 @@
+RESTART
+
+#
+FLUSH STRIDE=1
+
+# auxiliary
+
+# C-Pt (surf) distance
+dis1: DISTANCE ATOMS=1,6
+
+# C - Pt(surf) - Pt(centre)
+ang1: ANGLE ATOMS=1,6,3
+
+# coordination number
+#cn1: COORDINATION GROUPA=1 GROUPB=3-15 NN=18 MM=36 R_0=0.24
+
+res1: RESTRAINT ARG=ang1 AT=pi KAPPA=10000.0
+
+# metadyn
+METAD ...
+LABEL=metad
+ARG=dis1
+PACE=10
+HEIGHT=2.5
+SIGMA=0.02
+FILE=hills-1
+... METAD
+
+# set metaMD region
+lw0: LOWER_WALLS ARG=dis1 AT=0.11 KAPPA=10000.0
+uw0: UPPER_WALLS ARG=dis1 AT=0.50 KAPPA=10000.0
+
+#lw1: LOWER_WALLS ARG=cn1 AT=0.0 KAPPA=10000.0
+#uw1: UPPER_WALLS ARG=cn1 AT=4.2 KAPPA=10000.0
+
+PRINT STRIDE=1 ARG=dis1,lw0.bias,uw0.bias,ang1,res1.bias,metad.bias FILE=bias-1
