@@ -1,0 +1,40 @@
+# 
+FLUSH STRIDE=1
+
+# auxiliary
+cell: CELL
+pos: POSITION ATOM=1 SCALED_COMPONENTS # carbon atom
+
+# coordination number
+cn1: COORDINATION GROUPA=1 GROUPB=10,12,14,16 NN=18 MM=36 R_0=0.24
+
+# C-Pt (Top) distance
+dis0: DISTANCE ATOMS=1,16
+
+# calculate distance between the carbon and the surface plane
+MATHEVAL ...
+LABEL=dis1
+ARG=cell.cz,pos.c
+VAR=cz,pz
+FUNC=cz*(pz-0.21)
+PERIODIC=NO
+... MATHEVAL
+
+#res1: RESTRAINT ARG=dis1 AT=0.25 KAPPA=200000.0
+METAD ...
+LABEL=metad
+ARG=dis1,cn1
+PACE=10 
+HEIGHT=2.5
+SIGMA=0.02,0.1
+FILE=hills-1
+... METAD
+
+# set metaMD region
+lw0: LOWER_WALLS ARG=dis1 AT=0.11 KAPPA=10000.0
+uw0: UPPER_WALLS ARG=dis1 AT=0.50 KAPPA=10000.0
+
+lw1: LOWER_WALLS ARG=cn1 AT=0.0 KAPPA=10000.0
+uw1: UPPER_WALLS ARG=cn1 AT=3.2 KAPPA=10000.0
+
+PRINT STRIDE=1 ARG=dis0,dis1,lw0.bias,uw0.bias,cn1,lw1.bias,uw1.bias,metad.bias FILE=bias-1
