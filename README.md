@@ -8,6 +8,8 @@ This package aims to accelerate metadynamics (MetaD) in heterogeneous reactions 
 
 Install the external codes, prepare the python environment and add `AccMetaD` to `PYTHONPATH`.
 
+Miniconda is recommaned to configure environment.
+
 ### External Codes
 
 1. VASP 5.4.1
