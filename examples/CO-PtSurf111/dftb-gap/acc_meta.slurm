@@ -11,7 +11,7 @@ source ~/envs/source_quip.sh
 export DFTB_COMMAND="/mnt/scratch/chemistry-apps/dkb01416/dftbplus/installed/20.1/gnu-6.4.0/somp/bin/dftb+ > dftb.out"
 export DFTB_SLAKO="/users/40247882/repository/DataBase/skf/parameterisation/PtCO/"
 
-export VASP_COMMAND="mpirun -n 16 /mnt/scratch/chemistry-apps/dkb01416/vasp/installed/intel-2016/5.4.4/vasp_std"
+export VASP_COMMAND="mpirun -n 32 /mnt/scratch/chemistry-apps/dkb01416/vasp/installed/intel-2016/5.4.4/vasp_std"
 export VASP_PP_PATH="/mnt/scratch/chemistry-apps/dkb01416/vasp/PseudoPotential"
 
 export QUIP_COMMAND="quip"

@@ -8,7 +8,7 @@
 
 source ~/envs/source_quip.sh
 
-export VASP_COMMAND="mpirun -n 16 /mnt/scratch/chemistry-apps/dkb01416/vasp/installed/intel-2016/5.4.4/vasp_std"
+export VASP_COMMAND="mpirun -n 32 /mnt/scratch/chemistry-apps/dkb01416/vasp/installed/intel-2016/5.4.4/vasp_std"
 export VASP_PP_PATH="/mnt/scratch/chemistry-apps/dkb01416/vasp/PseudoPotential"
 
 export QUIP_COMMAND="quip"
